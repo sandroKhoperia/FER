@@ -12,6 +12,7 @@ def main(use_pretrained):
     if use_pretrained:
         model_state_dict = torch.load('../venv/results/model_new.pth')
         model.load_state_dict(model_state_dict)
+        optimizer = Adam(model.parameters(), lr= data_model.LEARNING_RATE)
         optimizer_state_dict = torch.load('../venv/results/optimizer_new.pth')
         optimizer.load_state_dict(optimizer_state_dict)
 
@@ -21,4 +22,4 @@ def main(use_pretrained):
     emotion_cnn.output_predictions(model, data_model, data_model)
 
 if __name__ == '__main__':
-    main(False)
+    main(True)
