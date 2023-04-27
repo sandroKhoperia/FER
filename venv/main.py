@@ -19,7 +19,7 @@ def main(use_pretrained):
     else:
         emotion_cnn.train_process(model, data_model, save_model=True)
     emotion_cnn.plot_confussion_matrix(model, data_model)
-    emotion_cnn.output_predictions(model, data_model, data_model)
+    emotion_cnn.output_predictions(model, data_model)
 
 if __name__ == '__main__':
     main(True)
