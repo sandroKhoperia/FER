@@ -104,12 +104,12 @@ def train(model, epoch, config, criterion, optimizer, save_model):
     config.train_correct.append(train_correct / len(config.train_loader.dataset))
 
 
-def test(model, config, criterion, lr_scheduler):
+def test(model, config, criterion):
     """
     Tests the current model
-    :param network: CNN model
-    :param test_loader:
-    :param test_losses:
+    :param model: CNN model
+    :param config:
+    :param criterion:
     :return:
     """
     model.eval()
@@ -128,7 +128,7 @@ def test(model, config, criterion, lr_scheduler):
         100. * test_acc / len(config.test_loader.dataset)))
 
 
-def output_predictions(network, prep_model, config):
+def output_predictions(network, prep_model):
     """
     Predicts the output based on the test data available
     :param network:  CNN model
@@ -142,7 +142,7 @@ def output_predictions(network, prep_model, config):
         images, data = example_data
         correct_data = data[:12]
 
-        cuda_images, data = images.to(config.device), data.to(config.device)
+        cuda_images, data = images.to(prep_model.device), data.to(prep_model.device)
         output = network(cuda_images[:12])
         for i in range(12):
             prediction = output.data.max(1, keepdim=True)[1][i].item()
