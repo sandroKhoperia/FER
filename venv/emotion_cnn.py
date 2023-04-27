@@ -67,7 +67,6 @@ def train_process(model, config, save_model):
     """
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
-    lr_scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=2)
     for epoch in range(1, config.EPOCHS + 1):
         train(model, epoch, config, criterion, optimizer, save_model)
         test(model, config, criterion, lr_scheduler)
