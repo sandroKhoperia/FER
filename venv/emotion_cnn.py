@@ -69,7 +69,7 @@ def train_process(model, config, save_model):
     optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
     for epoch in range(1, config.EPOCHS + 1):
         train(model, epoch, config, criterion, optimizer, save_model)
-        test(model, config, criterion, lr_scheduler)
+        test(model, config, criterion)
     epochs = [i for i in range(1, config.EPOCHS)]
     plot_train_curve(config, epochs)
     plot_accuracy(config, epochs)
